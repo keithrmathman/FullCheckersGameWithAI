@@ -26,6 +26,7 @@ CheckersBoard::CheckersBoard()
 		j = 0, k = 0;
 	}
 
+	 putAllPlayableSquareCoordinatesToArray();
 	//InitalizelayoutOfcheckerPiecesOnBoard();
 	//this->Board = Board;
 }
@@ -49,6 +50,18 @@ void CheckersBoard::DisplayColorsOnBoard()
 		std::cout << "\n";
 	}
 }
+
+void CheckersBoard::printAllPlayableSquares()
+{
+	std::cout << "Coordinate List of Playable Squares\n\n" << std::endl;
+	for (int i = 0; i < numberOfPlayableSquaresOnCheckerBoard; i++)
+	{
+		
+		std::cout << PlayableSquaresOnBoardArray[i].Xcoor << "," << PlayableSquaresOnBoardArray[i].Ycoor << std::endl;
+	}
+
+}
+
 
 //Initalize Standard checkers board layout
 void CheckersBoard::InitalizelayoutOfcheckerPiecesOnBoard()
@@ -174,6 +187,34 @@ void CheckersBoard::PrintAllCheckerPositions()
 		std::cout << it->Xcoor << "," << it->Ycoor << std::endl;
 	}
 }
+
+
+void CheckersBoard:: putAllPlayableSquareCoordinatesToArray()
+{
+	int x = 0; 
+	int y = 0;
+	int Arrindex = 0;
+
+	for (int i = 0; i < 8;)
+	{
+		for (int j = 1; j < 8; j+=2)
+		{
+			PlayableSquaresOnBoardArray[Arrindex].Xcoor = i;
+			PlayableSquaresOnBoardArray[Arrindex].Ycoor = j;
+			Arrindex++;
+		}
+		i++;
+
+		for (int j = 0; j < 8; j+=2)
+		{
+			PlayableSquaresOnBoardArray[Arrindex].Xcoor = i;
+			PlayableSquaresOnBoardArray[Arrindex].Ycoor = j;
+			Arrindex++;
+		}
+		i++;
+	}
+}
+
 
 void CheckersBoard::setCheckerPositionsOnBoard(int Xcoor, int Ycoor, int PlayerNo)
 	{

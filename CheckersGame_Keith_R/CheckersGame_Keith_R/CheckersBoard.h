@@ -12,11 +12,7 @@ public:
 	~CheckersBoard();
 	
 
-	enum CheckerPieceColor
-	{
-		RED,
-		BLACK
-	};
+	
 
 	enum BoardSquareColor
 	{
@@ -33,25 +29,27 @@ public:
 	void setCheckerPositionsOnBoard(int Xcoor, int Ycoor, int PlayerNo);
 	void setBoardCheckerPieceMoved(int Xcoor, int Ycoor);
 	void CheckersBoard::clearCheckerPositions();
-	void PrintAllCheckerPositions();
-	void CheckersBoard::PlacePiecesOnBoard();
+	void PrintAllCheckerPositions(); //print all checker pieces 
+	void CheckersBoard::PlacePiecesOnBoard();//lists coordinates of squares that are playable to array 
+	void printAllPlayableSquares(); //prints list of squares the checker pieces are allowed to land
 
 private:
 	 int numberOfPlayer1CheckerPieceCoordinqtesMapped = 0, numberOfPlayer2CheckerPieceCoordinqtesMapped = 0;
-	
+	 int numberOfPlayableSquaresOnCheckerBoard = 32;//number of playable squares on checker board
+
 	 struct BoardPieceCoordinates
 	{
 		int Xcoor;
 		int Ycoor;
 	};
 
-	
+	 BoardPieceCoordinates PlayableSquaresOnBoardArray[32];
 	std::vector<BoardPieceCoordinates> Player1CheckerPieces;
 	std::vector<BoardPieceCoordinates> Player2CheckerPieces;
 
 	BoardPieceCoordinates BoardCheckerPieceMovedorRemoved;
 
-	
+	void putAllPlayableSquareCoordinatesToArray();
 
 	int BoardColorLayout[8][8];
 	

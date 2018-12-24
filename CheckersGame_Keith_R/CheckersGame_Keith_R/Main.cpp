@@ -51,5 +51,6 @@ int main()
 
 	CB.PlacePiecesOnBoard();
 
+	CB.printAllPlayableSquares();
 	return 0;
 }

@@ -1,6 +1,3 @@
-﻿  Rules.cpp
-  Main.cpp
-  CheckersBoard.cpp
-  Generating Code...
-  CheckersGame_Keith_R.vcxproj -> C:\Users\KMAN\Documents\GitHub\CheckersGame_Keith_R\Debug\CheckersGame_Keith_R.exe
-  CheckersGame_Keith_R.vcxproj -> C:\Users\KMAN\Documents\GitHub\CheckersGame_Keith_R\Debug\CheckersGame_Keith_R.pdb (Partial PDB)
+﻿  CheckersBoard.cpp
+  CheckersGame_Keith_R.vcxproj -> C:\Users\KMAN\Documents\GitHub\FullCheckersGameWithAI\CheckersGame_Keith_R\Debug\CheckersGame_Keith_R.exe
+  CheckersGame_Keith_R.vcxproj -> C:\Users\KMAN\Documents\GitHub\FullCheckersGameWithAI\CheckersGame_Keith_R\Debug\CheckersGame_Keith_R.pdb (Partial PDB)

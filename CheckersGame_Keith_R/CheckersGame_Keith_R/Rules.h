@@ -10,9 +10,9 @@ public:
 
 	bool is_Valid_move(CheckerPiece* cp, int XCoor, int Ycoor, int Prev_X_Coor,int Prev_Ycoor);
 
-	void setAsKing();///King 
+	void KingMe(CheckerPiece* cp);///King me
 
-	void jump();
+	void jump(); 
 
 	bool _at_opponents_end_of_board(int XCoor, int Ycoor, CheckerPiece* cp);
 

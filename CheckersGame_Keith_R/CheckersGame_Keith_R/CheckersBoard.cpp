@@ -215,6 +215,18 @@ void CheckersBoard:: putAllPlayableSquareCoordinatesToArray()
 	}
 }
 
+void CheckersBoard::DisplayAllPossibleMovesOnBoard(int PlayerNo, CheckerPiece cp)
+{
+	if (PlayerNo == 1)
+	{
+		if (cp.isKing())
+		{
+			
+		}
+	}
+
+}
+
 
 void CheckersBoard::setCheckerPositionsOnBoard(int Xcoor, int Ycoor, int PlayerNo)
 	{
@@ -226,7 +238,7 @@ void CheckersBoard::setCheckerPositionsOnBoard(int Xcoor, int Ycoor, int PlayerN
 			bpc.Ycoor = Ycoor;
 
 			Player1CheckerPieces.push_back(bpc);
-			numberOfPlayer1CheckerPieceCoordinqtesMapped++;
+			numberOfPlayer1CheckerPieceCoordinatesMapped++;
 		}
 
 		else if (PlayerNo == 2)
@@ -235,8 +247,15 @@ void CheckersBoard::setCheckerPositionsOnBoard(int Xcoor, int Ycoor, int PlayerN
 			bpc.Ycoor = Ycoor;
 
 			Player2CheckerPieces.push_back(bpc);
-			numberOfPlayer2CheckerPieceCoordinqtesMapped++;
+			numberOfPlayer2CheckerPieceCoordinatesMapped++;
 		}
 	}
 
 
+LinkedList CheckersBoard::checkForPossibleSquares(int xcoor, int ycoor)
+{
+	LinkedList Llist;
+
+
+	
+}

@@ -2,9 +2,6 @@
 class CheckerPiece
 {
 public:
-	CheckerPiece();
-	~CheckerPiece();
-
 	enum CheckerPieceType
 	{
 		KING,
@@ -15,5 +12,21 @@ public:
 		RED,
 		BLACK
 	};
+
+	CheckerPiece(CheckerPieceColor Ccolor, CheckerPieceType Ctype);
+	~CheckerPiece();
+
+	
+
+	void setAsKing();
+	bool isKing();
+
+private:
+	
+	CheckerPieceColor Ccolor;
+	CheckerPieceType Ctype;
 };
+
+
+
 

@@ -16,6 +16,17 @@ public:
 
 	bool _at_opponents_end_of_board(int XCoor, int Ycoor, CheckerPiece* cp);
 
-	
+	void ConfigureCheckerPiecesOnGameBoard();
+
+	enum  PlayerDirection
+	{
+		UP,
+		DOWN
+	};
+
+	/*PlayerDirection GetPlayerDirection()
+	{
+		return;
+	}*/
 };
 

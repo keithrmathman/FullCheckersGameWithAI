@@ -164,28 +164,39 @@ void CheckersBoard::clearCheckerPositions()
 	Player1CheckerPieces.clear();
 	Player2CheckerPieces.clear();
 }
-	
-void CheckersBoard::setBoardCheckerPieceMoved(int Xcoor, int Ycoor)
+
+
+void CheckersBoard::setBoardCheckerPieceMoved(int CheckerPieceNumber, int Xcoor, int Ycoor)
 {
+	CheckerPieceNumber_ThatisbeingMovedorRemoved = CheckerPieceNumber;
 	BoardCheckerPieceMovedorRemoved.Xcoor = Xcoor;
 	BoardCheckerPieceMovedorRemoved.Ycoor = Ycoor;
 }
 
-void CheckersBoard::PrintAllCheckerPositions()
+void CheckersBoard::PrintAllCheckerPositions(CheckerPiece** Player1_cp, CheckerPiece** Player2_cp,int P1_CheckerPieces_size, int Player2_CheckerPieces_size)
 {
 	std::cout << "\n\n\nPlayer 1 Piece Coordinates: " << std::endl;
-	std::vector<BoardPieceCoordinates>::iterator it; 
+
+	for (int t = 0; t < P1_CheckerPieces_size; t++)
+	{
+		std::cout << Player1_cp[t]->getXcoor() << ", " << Player1_cp[t]->getYcoor() << std::endl;
+	}
+	/*std::vector<BoardPieceCoordinates>::iterator it; 
 
 	for (it = Player1CheckerPieces.begin(); it != Player1CheckerPieces.end(); ++it)
 	{
 		std::cout << it->Xcoor <<"," << it->Ycoor << std::endl;
-	}
+	}*/
 
 	std::cout << "\n\n\nPlayer 2 Piece Coordinates: " << std::endl;
-	for (it = Player2CheckerPieces.begin(); it != Player2CheckerPieces.end(); ++it)
+	for (int t = 0; t < P1_CheckerPieces_size; t++)
+	{
+		std::cout << Player2_cp[t]->getXcoor() << ", " << Player2_cp[t]->getYcoor() << std::endl;
+	}
+	/*for (it = Player2CheckerPieces.begin(); it != Player2CheckerPieces.end(); ++it)
 	{
 		std::cout << it->Xcoor << "," << it->Ycoor << std::endl;
-	}
+	}*/
 }
 
 
@@ -215,14 +226,56 @@ void CheckersBoard:: putAllPlayableSquareCoordinatesToArray()
 	}
 }
 
-void CheckersBoard::DisplayAllPossibleMovesOnBoard(int PlayerNo, CheckerPiece cp)
+//playerno_totalnumberOfcheckerpieces -- total number of checkers on checker board for each checker player
+void CheckersBoard::DisplayAllPossibleMovesOnBoard(int PlayerNo, CheckerPiece** cp, int playerno_totalnumberOfcheckerpieces)
 {
-	if (PlayerNo == 1)
+	LinkedList LinkedlistArr[12];
+
+
+	for (int t = 0; t < playerno_totalnumberOfcheckerpieces; t++)
 	{
-		if (cp.isKing())
+		if (PlayerNo == 1)
 		{
-			
+			if (cp[t]->isKing())
+			{
+
+				LinkedlistArr[t] = checkForPossibleMoves(cp[t]->getXcoor(), cp[t]->getYcoor(), true, PlayerNo);
+
+
+			}
+
+			else//if checker piece is not a king
+				//for (int t = 0; t < playerno_totalnumberOfcheckerpieces; t++)
+				{
+					LinkedlistArr[t] = checkForPossibleMoves(cp[t]->getXcoor(), cp[t]->getYcoor(), false, PlayerNo);
+
+				}
 		}
+	}
+
+	if (PlayerNo == 2)
+	{
+		if (cp[t]->isKing())
+		{
+			for (int t = 0; t < playerno_totalnumberOfcheckerpieces; t++)
+			{
+				LinkedlistArr[t] = checkForPossibleMoves(cp[t]->getXcoor(), cp[t]->getYcoor(), true, PlayerNo);
+
+			}
+		}
+
+		else
+			for (int t = 0; t < playerno_totalnumberOfcheckerpieces; t++)
+			{
+				LinkedlistArr[t] = checkForPossibleMoves(cp[t]->getXcoor(), cp[t]->getYcoor(), false, PlayerNo);
+
+			}
+	}
+
+	cout << " All Possible Moves For Each checker piece:\n\n " << endl;
+	for (int i = 0; i < 12 && LinkedlistArr[i].head != NULL; i++)
+	{
+		LinkedlistArr[i].print(i);
 	}
 
 }
@@ -252,10 +305,87 @@ void CheckersBoard::setCheckerPositionsOnBoard(int Xcoor, int Ycoor, int PlayerN
 	}
 
 
-LinkedList CheckersBoard::checkForPossibleSquares(int xcoor, int ycoor)
+LinkedList CheckersBoard::checkForPossibleMoves(int xcoor, int ycoor, bool isKing, int playerNo)
 {
 	LinkedList Llist;
+	//BoardPieceCoordinates bpc,bpc2,bpc3,bpc4;
 
+	if (isKing)//if checker piece is a king, then the piece can move in 4 possible squares if in bounds
 
+	{
+		if (xcoor + 1 < 8 && ycoor + 1 < 8)
+		{
+			Llist.add(xcoor + 1, ycoor + 1);
+			/*bpc.Xcoor = xcoor + 1;
+			bpc.Ycoor = ycoor + 1;
+			Llist.add(bpc);*/
+		}
+		
+		if (xcoor - 1 >= 0 && ycoor + 1 < 8)
+		{
+			Llist.add(xcoor - 1, ycoor + 1);
+			/*bpc2.Xcoor = xcoor - 1;
+			bpc2.Ycoor = ycoor + 1;
+			Llist.add(bpc2);*/
+		}
+		if (xcoor + 1 < 8 && ycoor - 1 >= 0)
+		{
+			Llist.add(xcoor + 1, ycoor - 1);
+			/*bpc3.Xcoor = xcoor + 1;
+			bpc3.Ycoor = ycoor - 1;
+			Llist.add(bpc3);*/
+		}
+
+		if (xcoor - 1 >= 0 && ycoor - 1 >= 0)
+		{
+			Llist.add(xcoor - 1, ycoor - 1);
+			/*bpc4.Xcoor = xcoor - 1;
+			bpc4.Ycoor = ycoor - 1;
+			Llist.add(bpc4);*/
+		}
+
+		return Llist;
+	}
+
+	if (playerNo == 1)
+	{
+		if (xcoor + 1 < 8 && ycoor + 1 < 8)
+		{
+			Llist.add(xcoor + 1, ycoor + 1);
+			/*bpc.Xcoor = xcoor + 1;
+			bpc.Ycoor = ycoor + 1;
+			Llist.add(bpc);*/
+
+		}
+
+		if (xcoor - 1 >= 0 && ycoor + 1 < 8)
+		{
+			Llist.add(xcoor - 1, ycoor + 1);
+			/*bpc2.Xcoor = xcoor - 1;
+			bpc2.Ycoor = ycoor + 1;
+			Llist.add(bpc2);*/
+		}
+	}
+
+	if (playerNo == 2)
+	{
+		if (xcoor - 1 >= 0 && ycoor - 1 >= 0)
+		{
+			Llist.add(xcoor - 1, ycoor - 1);
+			/*bpc4.Xcoor = xcoor - 1;
+			bpc4.Ycoor = ycoor - 1;
+			Llist.add(bpc4);*/
+		}
+
+		if (xcoor + 1 < 8 && ycoor - 1 >= 0)
+		{
+			Llist.add(xcoor + 1, ycoor - 1);
+			/*bpc3.Xcoor = xcoor + 1;
+			bpc3.Ycoor = ycoor - 1;
+			Llist.add(bpc3);*/
+		}
+	}
+
+	return Llist;
 	
 }

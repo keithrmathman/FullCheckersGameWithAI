@@ -112,12 +112,13 @@
   <ItemGroup>
     <ClInclude Include="CheckerPiece.h" />
     <ClInclude Include="CheckersBoard.h" />
+    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Rules.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CheckerPiece.cpp" />
     <ClCompile Include="CheckersBoard.cpp" />
-    <ClCompile Include="linked_list.cpp" />
+    <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Rules.cpp" />
   </ItemGroup>

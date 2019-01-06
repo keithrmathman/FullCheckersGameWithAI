@@ -108,8 +108,9 @@ void CheckersBoard::ResetBoard()
 	}
 }
 
+
 //NOT OPTIMAL CODE---->> CHANGE LATER 
-void CheckersBoard::PlacePiecesOnBoard()
+void CheckersBoard::PlacePiecesOnBoard( )
 {
 	int Player1marker = 0, Player2marker = 0, Player1VectorSize = Player1CheckerPieces.size(), Player2VectorSize = Player2CheckerPieces.size();
 
@@ -164,7 +165,10 @@ void CheckersBoard::clearCheckerPositions()
 	Player1CheckerPieces.clear();
 	Player2CheckerPieces.clear();
 }
-
+void CheckersBoard::MoveCheckerPiece(CheckerPiece* cp, int newX, int newY)
+{
+	cp->setCoord(newX, newY);
+}
 
 void CheckersBoard::setBoardCheckerPieceMoved(int CheckerPieceNumber, int Xcoor, int Ycoor)
 {

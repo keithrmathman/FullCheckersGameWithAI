@@ -51,7 +51,7 @@ public:
 	void CheckersBoard::PlacePiecesOnBoard();//lists coordinates of squares that are playable to array 
 	void printAllPlayableSquares(); //prints list of squares the checker pieces are allowed to land
 	void DisplayAllPossibleMovesOnBoard(int PlayerNo, CheckerPiece** cp, int playerno_totalnumberOfcheckerpieces);
-
+	void MoveCheckerPiece(CheckerPiece* cp, int newX, int newY); //move checker piece to new location
 private:
 
 	

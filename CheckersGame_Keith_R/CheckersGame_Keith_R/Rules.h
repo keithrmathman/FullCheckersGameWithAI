@@ -8,7 +8,7 @@ public:
 	~Rules();
 	const int BlackCheckerEndYcoor = 8;
 	const int RedCheckerEndYcoor = 0;
-
+	CheckersBoard cb;
 	bool is_Valid_move(CheckerPiece* cp, int XCoor, int Ycoor, int Prev_X_Coor,int Prev_Ycoor);
 
 	void KingMe(CheckerPiece* cp);///King me
@@ -26,6 +26,7 @@ public:
 		DOWN
 	};
 
+	int Check_for_possible_jumps(CheckersBoard::BoardPieceCoordinates* possible_jump_coordinates, CheckerPiece* cp, CheckerPiece** cp_Arr,  int number_of_player_checkerpieces);
 	PlayerDirection Player1_Direction = UP;
 	PlayerDirection Player2_direction = DOWN;
 	/*PlayerDirection GetPlayerDirection()

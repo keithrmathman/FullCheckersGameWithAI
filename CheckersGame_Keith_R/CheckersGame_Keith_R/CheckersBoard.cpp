@@ -177,6 +177,37 @@ void CheckersBoard::setBoardCheckerPieceMoved(int CheckerPieceNumber, int Xcoor,
 	BoardCheckerPieceMovedorRemoved.Ycoor = Ycoor;
 }
 
+void CheckersBoard::updateBoardSquares(CheckerPiece** Player1_cp, CheckerPiece** Player2_cp)
+{
+
+	int temp1, temp2, temp3, temp4; 
+	for (int i = 0; i < 12; i++)
+	{
+		temp1 = Player1_cp[i]->getXcoor(); temp2 = Player1_cp[i]->getYcoor(); temp3 = Player2_cp[i]->getXcoor(); temp4 = Player2_cp[i]->getYcoor();
+
+		for (int j = 0; j < 32; j++)
+		{
+			if (temp1 == bsc_Array[j].Xcoor && temp2 == bsc_Array[j].Ycoor)
+			{
+				bsc_Array[j].isOccupied = true; //this square is now occupied by a checker piece
+			}
+			else if (temp3 == bsc_Array[j].Xcoor && temp4 == bsc_Array[j].Ycoor)
+			{
+				bsc_Array[j].isOccupied = true; //this square is now occupied by a checker piece
+			}
+		}
+	}
+}
+
+bool CheckersBoard::isSquareOccupied(int Xcoor, int Ycoor)
+{
+	for each ( BoardSquareCoordinates bsc in bsc_Array)
+	{
+		if (Xcoor == bsc.Xcoor && Ycoor == bsc.Ycoor)
+			return bsc.isOccupied;
+	}
+	return false;
+}
 void CheckersBoard::PrintAllCheckerPositions(CheckerPiece** Player1_cp, CheckerPiece** Player2_cp,int P1_CheckerPieces_size, int Player2_CheckerPieces_size)
 {
 	std::cout << "\n\n\nPlayer 1 Piece Coordinates: " << std::endl;
@@ -212,18 +243,23 @@ void CheckersBoard:: putAllPlayableSquareCoordinatesToArray()
 
 	for (int i = 0; i < 8;)
 	{
-		for (int j = 1; j < 8; j+=2)
+		for (int j = 0; j < 8; j+=2)
 		{
-			PlayableSquaresOnBoardArray[Arrindex].Xcoor = i;
-			PlayableSquaresOnBoardArray[Arrindex].Ycoor = j;
+			PlayableSquaresOnBoardArray[Arrindex].Xcoor = j;
+			PlayableSquaresOnBoardArray[Arrindex].Ycoor = i;
+			bsc_Array[Arrindex].Xcoor = j;
+			bsc_Array[Arrindex].Ycoor = i;
 			Arrindex++;
+			
 		}
 		i++;
 
-		for (int j = 0; j < 8; j+=2)
+		for (int j = 1; j < 8; j+=2)
 		{
-			PlayableSquaresOnBoardArray[Arrindex].Xcoor = i;
-			PlayableSquaresOnBoardArray[Arrindex].Ycoor = j;
+			PlayableSquaresOnBoardArray[Arrindex].Xcoor = j;
+			PlayableSquaresOnBoardArray[Arrindex].Ycoor = i;
+			bsc_Array[Arrindex].Xcoor = j;
+			bsc_Array[Arrindex].Ycoor = i;
 			Arrindex++;
 		}
 		i++;

@@ -29,7 +29,10 @@ public:
 
 		int Xcoor;
 		int Ycoor;
+		
 	};
+
+	
 
 	int t;
 	enum BoardSquareColor
@@ -52,8 +55,19 @@ public:
 	void printAllPlayableSquares(); //prints list of squares the checker pieces are allowed to land
 	void DisplayAllPossibleMovesOnBoard(int PlayerNo, CheckerPiece** cp, int playerno_totalnumberOfcheckerpieces);
 	void MoveCheckerPiece(CheckerPiece* cp, int newX, int newY); //move checker piece to new location
+	void updateBoardSquares(CheckerPiece** Player1_cp, CheckerPiece** Player2_cp);
+	bool isSquareOccupied(int Xcoor, int Ycoor);
 private:
+	struct BoardSquareCoordinates
+	{
 
+		int Xcoor;
+		int Ycoor;
+		bool isOccupied = false;
+
+	};
+
+	BoardSquareCoordinates bsc_Array[32];
 	
 	int CheckerPieceNumber_ThatisbeingMovedorRemoved;
 	 int numberOfPlayer1CheckerPieceCoordinatesMapped = 0, numberOfPlayer2CheckerPieceCoordinatesMapped = 0;

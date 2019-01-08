@@ -4,6 +4,7 @@
 #include<algorithm>
 #include "CheckersBoard.h"
 #include "CheckerPiece.h"
+#include "Rules.h"
 
 using namespace std;
 
@@ -68,7 +69,7 @@ int main()
 		}
 		starting_x = !starting_x;
 		x = starting_x;
-		y--;
+		y++;
 	}
 
 	CheckerPiece* cp_2[12];// = static_cast<CheckerPiece*>(alloca(12 * sizeof(CheckerPiece)));
@@ -106,5 +107,18 @@ int main()
 	{
 		CB.DisplayAllPossibleMovesOnBoard(1, cp_2, 12);
 	}
+
+	cp_1[0]->setCoord(0, 4);
+	cp_1[1]->setCoord( 2,4);
+	cp_1[2]->setCoord(4, 4);
+	cp_1[3]->setCoord(6,4);
+
+	CB.updateBoardSquares(cp_1, cp_2);
+	//cout << "\n\n is the square occupied? " << CB.isSquareOccupied(0,0) << std::endl;
+	Rules rules;
+	rules.cb = CB;
+	CheckersBoard::BoardPieceCoordinates cb_coor[12];
+	rules.Check_for_possible_jumps(cb_coor, cp_1, cp_2, 12, 12, 2);
+	//rules.Check_for_possible_jumps(cb_coor, cp_1, cp_2, 12, 12, 1);
 	return 0;
 }
